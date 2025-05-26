@@ -1,8 +1,7 @@
 import requests
 import os
 
-# Termux sunucusunun IP adresi ve portu (manuel olarak girin)
-SERVER_URL = "http://192.168.1.101:5000"
+SERVER_URL = "http://192.168.1.101:5000"  # Termux IP adresi ve port
 
 def send_message():
     phone = input("Alıcı numarası (+905xxxxxxxxx): ")
@@ -41,11 +40,11 @@ def main():
     print("CLOWNHACK — Yasal Dosya / Mesaj Gönderici\n")
     print("1 - Mesaj Gönder")
     print("2 - Dosya Gönder")
-    choice = input("Seçimin (1/2): ")
+    secim = input("Seçimin (1/2): ")
 
-    if choice == "1":
+    if secim == "1":
         send_message()
-    elif choice == "2":
+    elif secim == "2":
         send_file()
     else:
         print("❌ Geçersiz seçim!")
