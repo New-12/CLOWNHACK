@@ -3,7 +3,7 @@ import os
 
 # TERMUX SERVER IP otomatik alınır ve PORT eklenir
 ip = requests.get("https://api.ipify.org").text.strip()
-SERVER_URL = f"http://{ip}:5000"  # Örneğin Termux sunucusu 5000 portunu dinliyor
+SERVER_URL = "http://192.168.1.101:5000"  # Örneğin Termux sunucusu 5000 portunu dinliyor
 
 def send_message():
     phone = input("Alıcı numarası (+905xxxxxxxxx): ")
