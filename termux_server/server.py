@@ -3,7 +3,6 @@ import os
 
 app = Flask(__name__)
 
-# Dosyaların kaydedileceği klasör
 RECEIVED_FILES_DIR = "received_files"
 os.makedirs(RECEIVED_FILES_DIR, exist_ok=True)
 
@@ -35,5 +34,4 @@ def receive_file():
         return "Dosya bulunamadı!", 400
 
 if __name__ == "__main__":
-    # Flask sunucusu 0.0.0.0 üzerinden dış bağlantılara da açık olacak
     app.run(host="0.0.0.0", port=5000)
