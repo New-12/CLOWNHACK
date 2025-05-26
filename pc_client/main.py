@@ -1,9 +1,8 @@
 import requests
 import os
 
-# TERMUX SERVER IP otomatik alınır ve PORT eklenir
-ip = requests.get("https://api.ipify.org").text.strip()
-SERVER_URL = "http://192.168.1.101:5000"  # Örneğin Termux sunucusu 5000 portunu dinliyor
+# Termux sunucusunun IP adresi ve portu (manuel olarak girin)
+SERVER_URL = "http://192.168.1.101:5000"
 
 def send_message():
     phone = input("Alıcı numarası (+905xxxxxxxxx): ")
@@ -16,7 +15,7 @@ def send_message():
     }
 
     try:
-        response = requests.post(f"{SERVER_URL}/api/message", json=data)
+        response = requests.post(f"{SERVER_URL}/", json=data)
         print("✅ Mesaj gönderildi. Sunucu cevabı:", response.text)
     except Exception as e:
         print("❌ Hata:", e)
@@ -32,8 +31,8 @@ def send_file():
     try:
         with open(file_path, "rb") as f:
             files = {"file": f}
-            data = {"type": "file", "phone": phone}
-            response = requests.post(f"{SERVER_URL}/api/file", files=files, data=data)
+            data = {"phone": phone}
+            response = requests.post(f"{SERVER_URL}/file", files=files, data=data)
             print("✅ Dosya gönderildi. Sunucu cevabı:", response.text)
     except Exception as e:
         print("❌ Hata:", e)
@@ -42,15 +41,14 @@ def main():
     print("CLOWNHACK — Yasal Dosya / Mesaj Gönderici\n")
     print("1 - Mesaj Gönder")
     print("2 - Dosya Gönder")
-    secim = input("Seçimin (1/2): ")
+    choice = input("Seçimin (1/2): ")
 
-    if secim == "1":
+    if choice == "1":
         send_message()
-    elif secim == "2":
+    elif choice == "2":
         send_file()
     else:
         print("❌ Geçersiz seçim!")
 
 if __name__ == "__main__":
     main()
-
